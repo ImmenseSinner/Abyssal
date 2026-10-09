@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  --color-abyss-950: #010409;
+  --color-abyss-900: #020b14;
+  --color-abyss-800: #04121f;
+  --color-abyss-700: #07202f;
+  --color-glow: #6ee7ff;
+  --color-foam: #e8f3f5;
+  --color-mist: #8fa9b2;
+}
+
+html {
+  background-color: #010409;
+  overflow-x: clip;
+}
+
+body {
+  background-color: #010409;
+  color: #e8f3f5;
+  font-family: var(--font-sans);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+::selection {
+  background: #6ee7ff;
+  color: #010409;
+}
+
+:focus-visible {
+  outline: 2px solid #6ee7ff;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #010409;
+}
+::-webkit-scrollbar-thumb {
+  background: #0a2a3c;
+  border-radius: 8px;
+  border: 2px solid #010409;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #10465f;
+}
+
+/* Ghost outline numerals */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(110, 231, 255, 0.13);
+}
+
+/* Marquee band */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 42s linear infinite;
+}
+
+/* Bioluminescent particles */
+@keyframes float-up {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--p-opacity, 0.5);
+  }
+  85% {
+    opacity: var(--p-opacity, 0.5);
+  }
+  100% {
+    transform: translate3d(2vw, -105vh, 0);
+    opacity: 0;
+  }
+}
+.particle {
+  position: absolute;
+  bottom: -4px;
+  border-radius: 9999px;
+  background: #9deaff;
+  box-shadow:
+    0 0 6px 1px rgba(125, 211, 252, 0.85),
+    0 0 16px 3px rgba(34, 211, 238, 0.35);
+  animation: float-up linear infinite;
+  will-change: transform, opacity;
+}
+
+/* Film grain */
+.noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
